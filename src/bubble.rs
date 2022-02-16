@@ -1,5 +1,6 @@
 use crate::LENGTH;
 
+/// Complexity: O(n²)
 pub fn bubble(mut ar: [i32; LENGTH], n: usize) -> [i32; LENGTH] {
     let mut swapped = false;
     for i in 0..n {
@@ -19,4 +20,23 @@ pub fn bubble(mut ar: [i32; LENGTH], n: usize) -> [i32; LENGTH] {
     }
 
     ar
+}
+
+/// Complexity: O(n²)
+pub fn bubble_recursive(mut ar: [i32; LENGTH], n: usize) -> [i32; LENGTH] {
+    if n == 1 {
+        return ar;
+    }
+
+    for i in 0..n {
+        for j in 1..(n - i) {
+            if ar[j - 1] > ar[j] {
+                let temp = ar[j - 1];
+                ar[j - 1] = ar[j];
+                ar[j] = temp;
+            }
+        }
+    }
+
+    bubble_recursive(ar, n - 1)
 }
