@@ -1,5 +1,20 @@
 use crate::LENGTH;
 
+/// Wonderful explanation by Dick Grune:
+/// 
+/// Gnome Sort is based on the technique used by the standard Dutch Garden Gnome (Du.: tuinkabouter).
+/// 
+/// Here is how a garden gnome sorts a line of flower pots:
+/// 
+/// Basically, he looks at the flower pot next to him and the previous one; 
+/// if they are in the right order he steps one pot forward, otherwise, 
+/// he swaps them and steps one pot backward.
+/// 
+/// Boundary conditions: if there is no previous pot, he steps forwards; 
+/// if there is no pot next to him, he is done.
+///     
+/// — "Gnome Sort - The Simplest Sort Algorithm". <https://dickgrune.com/Programs/gnomesort.html>
+/// 
 /// Complexity: O(n²)
 pub fn gnome(mut ar: [i32; LENGTH], n: usize) -> [i32; LENGTH] {
     let mut i = 0;
