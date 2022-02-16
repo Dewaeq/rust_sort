@@ -1,5 +1,6 @@
 use crate::LENGTH;
 
+/// Complexity: O(n²)
 pub fn selection(mut ar: [i32; LENGTH], n: usize) -> [i32; LENGTH] {
     let mut min;
 
