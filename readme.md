@@ -8,3 +8,6 @@
 * Insertion Sort
     * Recursive, for loop and while loop version
 * Gnome Sort
+
+
+*Note: as of writing, rust nightly is required for the is_sorted feature*
