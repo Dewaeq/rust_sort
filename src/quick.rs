@@ -1,5 +1,5 @@
-pub fn quick(ar: &mut [i32]) -> &mut [i32] {
-    quicksort(ar);
+pub fn quick<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
+    quicksort(&mut ar);
     ar
 }
 
@@ -45,13 +45,11 @@ fn quicksort(ar: &mut [i32]) {
 
 #[cfg(test)]
 mod tests {
-    use super::quicksort;
+    use super::quick;
     use crate::rand_array;
 
     #[test]
     fn test() {
-        let ar = &mut rand_array::<50>();
-        quicksort(ar);
-        assert!(ar.is_sorted());
+        assert!(quick(rand_array::<50>()).is_sorted());
     }
 }
