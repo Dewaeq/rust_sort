@@ -18,7 +18,7 @@ pub fn gnome<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
     let mut i = 0;
 
     while i < L {
-        if i == 0 || ar[i] > ar[i - 1] {
+        if i == 0 || ar[i] >= ar[i - 1] {
             i += 1;
         } else {
             let temp = ar[i - 1];

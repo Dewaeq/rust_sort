@@ -4,6 +4,7 @@ pub mod bubble;
 pub mod gnome;
 pub mod insertion;
 pub mod prelude;
+pub mod quick;
 pub mod selection;
 
 pub use prelude::*;
