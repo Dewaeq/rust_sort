@@ -1,3 +1,4 @@
+/// Complexity: O(nlog(n))
 pub fn quick<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
     quicksort(&mut ar);
     ar
