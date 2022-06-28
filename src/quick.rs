@@ -1,10 +1,5 @@
 /// Complexity: O(nlog(n))
-pub fn quick<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
-    quicksort(&mut ar);
-    ar
-}
-
-fn quicksort(ar: &mut [i32]) {
+pub fn quick(ar: &mut [i32]) {
     match ar.len() {
         0 | 1 => return,
         2 => {
@@ -40,17 +35,19 @@ fn quicksort(ar: &mut [i32]) {
     // Move the pivot to the correct position
     ar.swap(ar.len() - 1, left);
 
-    quicksort(&mut ar[..left]);
-    quicksort(&mut ar[right..]);
+    quick(&mut ar[..left]);
+    quick(&mut ar[right..]);
 }
 
 #[cfg(test)]
 mod tests {
     use super::quick;
-    use crate::rand_array;
+    use crate::{rand_array, TEST_SIZE};
 
     #[test]
     fn test() {
-        assert!(quick(rand_array::<50>()).is_sorted());
+        let ar = &mut rand_array::<TEST_SIZE>();
+        quick(ar);
+        assert!(ar.is_sorted());
     }
 }

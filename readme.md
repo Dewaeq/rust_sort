@@ -12,4 +12,4 @@
 * Merge Sort
 
 
-*Note: as of writing, rust nightly is required for the is_sorted feature*
+*Note: as of writing, rust nightly is required for the is_sorted and bench_black_box features*

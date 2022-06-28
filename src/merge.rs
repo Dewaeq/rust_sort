@@ -1,7 +1,6 @@
 /// Complexity: O(nlogn)
-pub fn merge<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
-    mergesort(&mut ar, 0, L - 1);
-    ar
+pub fn merge(ar: &mut [i32]) {
+    mergesort(ar, 0, ar.len() - 1);
 }
 
 /// Both left and right are inclusive
@@ -62,6 +61,8 @@ mod tests {
 
     #[test]
     fn test() {
-        assert!(merge(rand_array::<TEST_SIZE>()).is_sorted());
+        let ar = &mut rand_array::<TEST_SIZE>();
+        merge(ar);
+        assert!(ar.is_sorted());
     }
 }

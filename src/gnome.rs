@@ -14,10 +14,10 @@
 /// — "Gnome Sort - The Simplest Sort Algorithm". <https://dickgrune.com/Programs/gnomesort.html>
 ///
 /// Complexity: O(n²)
-pub fn gnome<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
+pub fn gnome(ar: &mut [i32]) {
     let mut i = 0;
 
-    while i < L {
+    while i < ar.len() {
         if i == 0 || ar[i] >= ar[i - 1] {
             i += 1;
         } else {
@@ -27,17 +27,17 @@ pub fn gnome<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
             i -= 1;
         }
     }
-
-    ar
 }
 
 #[cfg(test)]
 mod tests {
     use super::gnome;
-    use crate::rand_array;
+    use crate::{rand_array, TEST_SIZE};
 
     #[test]
     fn test() {
-        assert!(gnome(rand_array::<50>()).is_sorted())
+        let ar = &mut rand_array::<TEST_SIZE>();
+        gnome(ar);
+        assert!(ar.is_sorted())
     }
 }

@@ -1,10 +1,12 @@
 /// Complexity: O(n²)
-pub fn bubble<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
+pub fn bubble(ar: &mut [i32]) {
+    let l = ar.len();
+
     let mut swapped = false;
-    for i in 0..L {
+    for i in 0..l {
         // the i th max element is already in the correct position
         // after iteration i, so we don't need to loop over that part
-        for j in 1..(L - i) {
+        for j in 1..(l - i) {
             if ar[j - 1] > ar[j] {
                 let temp = ar[j - 1];
                 ar[j - 1] = ar[j];
@@ -16,14 +18,12 @@ pub fn bubble<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
             break;
         }
     }
-
-    ar
 }
 
 /// Complexity: O(n²)
-pub fn bubble_recursive<const L: usize>(mut ar: [i32; L], n: usize) -> [i32; L] {
+pub fn bubble_recursive(ar: &mut [i32], n: usize) {
     if n == 1 {
-        return ar;
+        return;
     }
 
     for i in 0..n {
@@ -41,16 +41,19 @@ pub fn bubble_recursive<const L: usize>(mut ar: [i32; L], n: usize) -> [i32; L] 
 
 #[cfg(test)]
 mod tests {
-    use crate::rand_array;
-
     use super::{bubble, bubble_recursive};
+    use crate::{rand_array, TEST_SIZE};
 
     #[test]
     fn test_regular() {
-        assert!(bubble(rand_array::<50>()).is_sorted())
+        let ar = &mut rand_array::<TEST_SIZE>();
+        bubble(ar);
+        assert!(ar.is_sorted())
     }
     #[test]
     fn test_recursive() {
-        assert!(bubble_recursive(rand_array::<50>(), 50).is_sorted())
+        let ar = &mut rand_array::<TEST_SIZE>();
+        bubble_recursive(ar, TEST_SIZE);
+        assert!(ar.is_sorted())
     }
 }

@@ -1,6 +1,6 @@
 /// Complexity: O(n²)
-pub fn insertion<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
-    for i in 1..L {
+pub fn insertion(ar: &mut [i32]) {
+    for i in 1..ar.len() {
         let key = ar[i];
         let mut j = i - 1;
 
@@ -15,14 +15,12 @@ pub fn insertion<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
             }
         }
     }
-
-    ar
 }
 
 /// Complexity: O(n²)]
-pub fn insertion_recursive<const L: usize>(mut ar: [i32; L], n: usize) -> [i32; L] {
+pub fn insertion_recursive(ar: &mut [i32], n: usize) {
     if n <= 1 {
-        return ar;
+        return;
     }
 
     for i in 1..n {
@@ -46,35 +44,39 @@ pub fn insertion_recursive<const L: usize>(mut ar: [i32; L], n: usize) -> [i32; 
 
 /// Same as normal insertion sort, but with a for loop
 /// Complexity: O(n²)
-pub fn insertion_for<const L: usize>(mut ar: [i32; L]) -> [i32; L] {
-    for i in 1..L {
+pub fn insertion_for(ar: &mut [i32]) {
+    for i in 1..ar.len() {
         for j in 0..i {
             if ar[j] > ar[i] {
                 ar[j..=i].rotate_right(1);
             }
         }
     }
-
-    ar
 }
 
 #[cfg(test)]
 mod tests {
     use super::{insertion, insertion_for, insertion_recursive};
-    use crate::rand_array;
+    use crate::{rand_array, TEST_SIZE};
 
     #[test]
     fn test_for() {
-        assert!(insertion_for(rand_array::<50>()).is_sorted())
+        let ar = &mut rand_array::<TEST_SIZE>();
+        insertion_for(ar);
+        assert!(ar.is_sorted())
     }
 
     #[test]
     fn test_regular() {
-        assert!(insertion(rand_array::<50>()).is_sorted())
+        let ar = &mut rand_array::<TEST_SIZE>();
+        insertion(ar);
+        assert!(ar.is_sorted())
     }
 
     #[test]
     fn test_recursive() {
-        assert!(insertion_recursive(rand_array::<50>(), 50).is_sorted())
+        let ar = &mut rand_array::<TEST_SIZE>();
+        insertion_recursive(ar, TEST_SIZE);
+        assert!(ar.is_sorted())
     }
 }
